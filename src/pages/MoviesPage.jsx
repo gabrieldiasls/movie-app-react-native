@@ -2,8 +2,10 @@ import { View } from "react-native";
 import { Select, Box, Center } from "native-base";
 import ItemList from "../components/list/ItemList";
 import { useEffect, useState } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function MoviePage() {
+function MoviePage(navigation) {
   const [arrayData, setArrayData] = useState([]);
   const [type, setType] = useState("");
   const [render, setRender] = useState(false);
@@ -68,6 +70,10 @@ function MoviePage() {
     fetchData(type, apiKey);
   }, [type]);
 
+  const onPress = () => {
+    navigation.navigate('Details');
+  };
+
   return (
     <View style={{backgroundColor: 'white'}}>
       <Center marginY={5}>
@@ -97,7 +103,7 @@ function MoviePage() {
       </Center>
 
       {/* {isLoading ? <></> : <ItemList titleData={arrayData} />} */}
-      {render ? <ItemList titleData={arrayData} /> : <></>}
+      {render ? <ItemList titleData={arrayData} onPress={onPress} /> : <></>}
       {/* <ItemList titleData={arrayData} /> */}
     </View>
   );

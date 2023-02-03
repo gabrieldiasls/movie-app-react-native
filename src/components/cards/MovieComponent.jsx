@@ -1,6 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Button, HStack, Box, Image } from "native-base";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 const styles = StyleSheet.create({
   imageStyle: {
@@ -17,7 +20,8 @@ const styles = StyleSheet.create({
   },
 });
 
-function MovieComponent({ movieTitle, popularity, releaseDate, imgLink }) {
+function MovieComponent({ movieTitle, popularity, releaseDate, imgLink, onPress }) {
+
   return (
     <HStack space={5} w={"100%"}>
       <Image source={{ uri: imgLink }} width={"25%"} height={"auto"} alt={movieTitle} marginX={"2"} marginY={"2"}/>
@@ -25,7 +29,7 @@ function MovieComponent({ movieTitle, popularity, releaseDate, imgLink }) {
         <Text style={styles.movieTitle}>{movieTitle}</Text>
         <Text>Popularity: {popularity}</Text>
         <Text>Release Date: {releaseDate}</Text>
-        <Button w={"90%"} marginTop={5} >More Details</Button>
+        <Button w={"90%"} marginTop={5} onPress={onPress}>More Details</Button>
       </Box>
     </HStack>
   );

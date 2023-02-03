@@ -1,7 +1,7 @@
 import { FlatList } from "native-base";
 import MovieComponent from "../cards/MovieComponent";
 
-const ItemList = ({ titleData }) => {
+const ItemList = ({ titleData, onPress }) => {
     // console.log('titleData >>>', titleData)
   return (
     <FlatList
@@ -12,6 +12,7 @@ const ItemList = ({ titleData }) => {
           movieTitle={item.title}
           popularity={item.popularity}
           releaseDate={item.releaseDate}
+          onPress={onPress}
         />
       )}
       keyExtractor={item => item.title}
